@@ -1,4 +1,4 @@
-// Last updated: 6/2/2025, 9:23:37 PM
+// Last updated: 6/2/2025, 9:26:22 PM
 class Solution {
     public int trap(int[] height) {
 
@@ -7,20 +7,18 @@ class Solution {
         // left max Height
 
         int[] leftMax = new int[n];
-        int leftMaxHeight = height[0];
+        leftMax[0] = height[0];
         
-        for(int i=0 ; i<height.length ; i++){
-            leftMax[i] = Math.max(leftMaxHeight,height[i]);
-            leftMaxHeight = leftMax[i];
+        for(int i=1 ; i<height.length ; i++){
+            leftMax[i] = Math.max(leftMax[i-1],height[i]);
         }
 
         // right max height
 
         int[] rightMax = new int[n];
-        int rightMaxHeight = height[n-1];
-        for(int i = n-1 ; i>=0 ;i--){
-            rightMax[i] = Math.max(rightMaxHeight , height[i]);
-            rightMaxHeight = rightMax[i];
+        rightMax[n-1] = height[n-1];
+        for(int i = n-2 ; i>=0 ;i--){
+            rightMax[i] = Math.max(rightMax[i+1] , height[i]);
         }
 
         // water hold by each unit
